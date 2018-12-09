@@ -11,6 +11,7 @@
     "mobx": "^5.7.0",
     "mobx-react": "^5.4.2",
     "native-base": "^2.8.1",
+    "prop-types": "^15.6.2",
     "react": "16.6.1",
     "react-native": "0.57.7",
     "react-native-elements": "^0.19.1",
