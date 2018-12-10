@@ -57,7 +57,14 @@ export class ProfileStore {
   }
 
   load = async () => {
-    await this.getProfile(this.userId);
+    const response = await this.getProfile(this.userId);
+    const userData = await response.json();
+    this.selectedTutorOrStudent = userData.tutorOrStudent;
+    this.name = userData.name;
+    this.selectedGender = userData.gender;
+    this.selectedEducation =userData.education;
+    this.major = userData.major;
+    this.intro = userData.intro;
   }
 
   submit = () => {

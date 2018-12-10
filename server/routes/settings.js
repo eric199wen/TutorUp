@@ -1,5 +1,6 @@
 const express = require('express');
 const url = require('url');
+const data = require('../static_data/users.json');
 
 const router = express.Router();
 
@@ -11,7 +12,8 @@ router.get('/', (req, res, next) => {
 router.get('/profile', (req, res) => {
   const query = url.parse(req.url, true).query;
   const userId = query.userId;
-  res.send(`userId = ${userId}`);
+
+  res.send(data[userId].profile);
 });
 
 router.get('/preference', (req, res) => {
