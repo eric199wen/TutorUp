@@ -1,7 +1,8 @@
 import { observable, action, computed } from 'mobx';
+import { getPreference } from '../api/settings';
 
 export class PreferenceStore {
-  @observable userId = '';
+  @observable userId = 1;
   @observable isActivelySearch = true;
 
   @observable subjects = [
@@ -111,6 +112,10 @@ export class PreferenceStore {
     return res;
   };
 
+  constructor(getPreference) {
+    this.getPreference = getPreference;
+  }
+
   @action toggleIsActivelySearch = () => {
     this.isActivelySearch = !this.isActivelySearch;
     this.submitIsActivelySearch();
@@ -217,6 +222,10 @@ export class PreferenceStore {
     return res;
   }
 
+  load = async () => {
+    await this.getPreference(this.userId);
+  }
+
   submitIsActivelySearch = () => {
     const data = {
       userId: this.userId,
@@ -272,6 +281,6 @@ export class PreferenceStore {
   }
 }
 
-const preferenceStore = new PreferenceStore();
+const preferenceStore = new PreferenceStore(getPreference);
 
 export default preferenceStore;

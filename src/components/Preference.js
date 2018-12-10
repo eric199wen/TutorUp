@@ -3,13 +3,16 @@ import { ScrollView, Text } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { observer } from 'mobx-react';
 import store from '../stores/PreferenceStore';
-import SelectInput from './shared/SelectInput';
 
 @observer
 export default class Preference extends Component {
   static navigationOptions = {
     title: 'Preference',
   };
+
+  componentDidMount() {
+    store.load();
+  }
 
   render() {
     const { navigate } = this.props.navigation;

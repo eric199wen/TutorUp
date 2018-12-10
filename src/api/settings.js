@@ -13,3 +13,9 @@ export function getProfile(userId) {
   });
 }
 
+export function getPreference(userId) {
+  return fetch(`${API}/preference?userId=${userId}`, {
+    method: 'GET',
+    headers,
+  });
+}

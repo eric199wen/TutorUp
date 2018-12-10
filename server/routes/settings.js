@@ -14,4 +14,10 @@ router.get('/profile', (req, res) => {
   res.send(`userId = ${userId}`);
 });
 
+router.get('/preference', (req, res) => {
+  const query = url.parse(req.url, true).query;
+  const userId = query.userId;
+  res.send(`userId = ${userId}`);
+});
+
 module.exports = router;
