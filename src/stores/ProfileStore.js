@@ -1,7 +1,8 @@
 import { observable, action } from 'mobx';
+import { getProfile } from '../api/settings';
 
 export class ProfileStore {
-  @observable userId = '';
+  @observable userId = 1;
   @observable tutorOrStudent = [
     { id: 0, value: '家教' },
     { id: 1, value: '學生' }
@@ -22,6 +23,10 @@ export class ProfileStore {
   @observable selectedEducation = '大學';
   @observable major = '';
   @observable intro = '';
+
+  constructor(getProfile) {
+    this.getProfile = getProfile;
+  }
 
   @action setUserId = (userId) => {
     this.userId = userId;
@@ -51,6 +56,10 @@ export class ProfileStore {
     this.intro = intro;
   }
 
+  load = async () => {
+    await this.getProfile(this.userId);
+  }
+
   submit = () => {
     const data = {
       userId: this.userId,
@@ -66,6 +75,6 @@ export class ProfileStore {
   }
 }
 
-const profileStore = new ProfileStore();
+const profileStore = new ProfileStore(getProfile);
 
 export default profileStore;

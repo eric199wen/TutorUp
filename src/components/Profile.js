@@ -26,6 +26,7 @@ export default class Profile extends Component {
   };
 
   componentDidMount() {
+    store.load();
     this.props.navigation.setParams({ save: this.save });
   }
 
