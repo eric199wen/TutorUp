@@ -1,0 +1,31 @@
+{
+  "1": {
+    "profile": {
+      "tutorOrStudent": "家教",
+      "name": "Eric",
+      "gender": "男",
+      "major": "資訊工程",
+      "education": "碩士",
+      "intro": "Hello World"
+    },
+    "preference": {
+      "isActivelySearch": true,
+      "subjects": [
+        { "id": 1, "name": "英文", "selected": true },
+        { "id": 2, "name": "數學", "selected": true }
+      ],
+      "districts": [
+        { "id": 2, "name": "新竹", "selected": true }
+      ],
+      "targetAges": [
+        { "id": 2, "name": "高中", "selected": true }
+      ],
+      "isOnlineOrInPerson": [
+        { "id": 0, "name": "線上", "selected": true }
+      ],
+      "compensation": [
+        { "id": 9, "name": "$1000/hr", "selected": true }
+      ]
+    }
+  }
+}
