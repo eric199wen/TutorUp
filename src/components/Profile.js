@@ -68,6 +68,12 @@ export default class Profile extends Component {
             onChangeText={store.setEducation}
           />
         </View>
+        <SelectInput
+          label='學校'
+          value={store.selectedSchool}
+          data={store.school}
+          onChangeText={store.setSchool}
+        />
         <TextInput
           label='簡介'
           value={store.intro}

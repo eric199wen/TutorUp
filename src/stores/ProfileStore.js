@@ -21,6 +21,20 @@ export class ProfileStore {
     { id: 3, value: '博士' },
   ];
   @observable selectedEducation = '大學';
+  
+  school = [
+    { id: 0, value: '台灣大學' },
+    { id: 1, value: '清華大學' },
+    { id: 2, value: '交通大學' },
+    { id: 3, value: '政治大學' },
+    { id: 4, value: '成功大學' },
+    { id: 5, value: '中央大學' },
+    { id: 6, value: '中正大學' },
+    { id: 7, value: '中興大學' }
+  ];
+  @observable selectedSchool = '清華大學';
+
+
   @observable major = '';
   @observable intro = '';
 
@@ -48,6 +62,10 @@ export class ProfileStore {
     this.selectedEducation = education;
   }
 
+  @action setSchool = (school) => {
+    this.selectedScool = school;
+  }
+
   @action setMajor = (major) => {
     this.major = major;
   }
@@ -62,7 +80,8 @@ export class ProfileStore {
     this.selectedTutorOrStudent = userData.tutorOrStudent;
     this.name = userData.name;
     this.selectedGender = userData.gender;
-    this.selectedEducation =userData.education;
+    this.selectedEducation = userData.education;
+    this.selectedSchool = userData.school;
     this.major = userData.major;
     this.intro = userData.intro;
   }
@@ -74,6 +93,7 @@ export class ProfileStore {
       name: this.name,
       gender: this.selectedGender,
       education: this.selectedEducation,
+      school: this.selectedSchool,
       major: this.major,
       intro: this.intro
     }
