@@ -19,7 +19,8 @@ router.get('/profile', (req, res) => {
 router.get('/preference', (req, res) => {
   const query = url.parse(req.url, true).query;
   const userId = query.userId;
-  res.send(`userId = ${userId}`);
+
+  res.send(data[userId].preference);
 });
 
 module.exports = router;

@@ -10,22 +10,18 @@
     },
     "preference": {
       "isActivelySearch": true,
-      "subjects": [
-        { "id": 1, "name": "英文", "selected": true },
-        { "id": 2, "name": "數學", "selected": true }
-      ],
       "districts": [
         { "id": 2, "name": "新竹", "selected": true }
+      ],
+      "subjects": [
+        { "id": 0, "name": "國文", "selected": true },
+        { "id": 2, "name": "數學", "selected": true }
       ],
       "targetAges": [
         { "id": 2, "name": "高中", "selected": true }
       ],
-      "isOnlineOrInPerson": [
-        { "id": 0, "name": "線上", "selected": true }
-      ],
-      "compensation": [
-        { "id": 9, "name": "$1000/hr", "selected": true }
-      ]
+      "isOnlineOrInPerson": { "id": 0, "name": "線上", "selected": true },
+      "compensation": { "id": 9, "name": "$1000/hr", "selected": true }
     }
   }
 }

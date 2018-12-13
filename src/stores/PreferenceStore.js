@@ -225,7 +225,20 @@ export class PreferenceStore {
   }
 
   load = async () => {
-    await this.getPreference(this.userId);
+    const response = await this.getPreference(this.userId);
+    const userData = await response.json();
+    this.isActivelySearch = userData.isActivelySearch;
+    userData.districts.forEach((district) => {
+      this.toggleDistrict(district.id);
+    });
+    userData.subjects.forEach((subject) => {
+      this.toggleSubject(subject.id);
+    });
+    userData.targetAges.forEach((targetAge) => {
+      this.toggleTargetAge(targetAge.id);
+    });
+    this.setIsOnlineOrInPerson(userData.isOnlineOrInPerson.id);
+    this.setCompensation(userData.compensation.id);
   }
 
   submitIsActivelySearch = () => {
