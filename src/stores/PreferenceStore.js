@@ -5,28 +5,6 @@ export class PreferenceStore {
   @observable userId = 1;
   @observable isActivelySearch = true;
 
-  @observable subjects = [
-    { id: 0, name: '國文', selected: false },
-    { id: 1, name: '英文', selected: false },
-    { id: 2, name: '數學', selected: false },    
-    { id: 3, name: '物理', selected: false },
-    { id: 4, name: '化學', selected: false },
-    { id: 5, name: '生物', selected: false },
-    { id: 6, name: '地理', selected: false },
-    { id: 7, name: '歷史', selected: false },
-    { id: 8, name: '公民', selected: false },
-  ]
-  @computed get selectedSubjects() {
-    let res = [];
-    this.subjects.forEach((subject) => {
-      if (subject.selected) {
-        res.push(subject);
-      }
-    });
-
-    return res;
-  };
-
   @observable districts = [
     { id: 0, name: '台北', selected: false },
     { id: 1, name: '桃園', selected: false },
@@ -52,6 +30,30 @@ export class PreferenceStore {
       }
     });
 
+    return res;
+  };
+
+  @observable subjects = [
+    { id: 0, name: '國文', selected: false },
+    { id: 1, name: '英文', selected: false },
+    { id: 2, name: '數學', selected: false },    
+    { id: 3, name: '物理', selected: false },
+    { id: 4, name: '化學', selected: false },
+    { id: 5, name: '生物', selected: false },
+    { id: 6, name: '地理', selected: false },
+    { id: 7, name: '歷史', selected: false },
+    { id: 8, name: '公民', selected: false },
+  ]
+  @computed get selectedSubjects() {
+    let res = [];
+    console.log('in selectdSubjects');
+    this.subjects.forEach((subject) => {
+      if (subject.selected) {
+        res.push(subject);
+      }
+    });
+
+    console.log(res);
     return res;
   };
 
@@ -121,12 +123,12 @@ export class PreferenceStore {
     this.submitIsActivelySearch();
   }
 
-  @action toggleSubject = (index) => {
-    this.subjects[index].selected = !this.subjects[index].selected;
-  }
-
   @action toggleDistrict = (index) => {
     this.districts[index].selected = !this.districts[index].selected;
+  }
+
+  @action toggleSubject = (index) => {
+    this.subjects[index].selected = !this.subjects[index].selected;
   }
 
   @action toggleTargetAge = (index) => {
