@@ -3,6 +3,7 @@ import { ScrollView, Text } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { observer } from 'mobx-react';
 import store from '../stores/PreferenceStore';
+import profileStore from '../stores/ProfileStore';
 
 @observer
 export default class Preference extends Component {
@@ -26,8 +27,9 @@ export default class Preference extends Component {
           onSwitch={store.toggleIsActivelySearch}
           switched={store.isActivelySearch}
         />
+        
         <ListItem
-          title='授課地區'
+          title='地區'
           onPress={() => navigate('SelectPage', {
             title: 'Select District',
             data: store.districts,
@@ -37,7 +39,7 @@ export default class Preference extends Component {
           rightTitle={<Text>{store.selectedDistrictsTitle}</Text>}
         />
         <ListItem
-          title='授課科目'
+          title='科目'
           onPress={() => navigate('SelectPage', {
             title: 'Select Subjects',
             data: store.subjects,
@@ -47,9 +49,9 @@ export default class Preference extends Component {
           rightTitle={<Text>{store.selectedSubjectsTitle}</Text>}
         />
         <ListItem
-          title='授課對象'
+          title={profileStore.isTutor ? '授課對象' : '選擇學歷'}
           onPress={() => navigate('SelectPage', {
-            title: '選擇授課對象',
+            title: '選擇對象',
             data: store.targetAges,
             toggle: store.toggleTargetAge,
             submit: store.submitTargetAges
@@ -67,9 +69,9 @@ export default class Preference extends Component {
           rightTitle={<Text>{store.selectedIsOnlineOrInPersonTitle}</Text>}
         />
         <ListItem
-          title='希望待遇'
+          title={profileStore.isTutor ? '希望待遇' : '可接受薪水'}
           onPress={() => navigate('SelectPage', {
-            title: '選擇教學方式',
+            title: '選擇薪水',
             data: store.compensation,
             toggle: store.submitCompensation
           })}

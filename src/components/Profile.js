@@ -35,6 +35,8 @@ export default class Profile extends Component {
   }
 
   render() {
+    const isTutor = store.isTutor;
+
     return (
       <ScrollView>
         <ListItem itemDivider />
@@ -55,25 +57,44 @@ export default class Profile extends Component {
           data={store.gender}
           onChangeText={store.setGender}
         />
-        <View>
-          <TextInput
-            label='科系'
-            value={store.major}
-            onChangeText={store.setMajor}
-          />
-          <SelectInput
-            label='學歷'
-            value={store.selectedEducation}
-            data={store.education}
-            onChangeText={store.setEducation}
-          />
-        </View>
-        <SelectInput
-          label='學校'
-          value={store.selectedSchool}
-          data={store.school}
-          onChangeText={store.setSchool}
-        />
+        {isTutor && 
+          <View>
+            <View>
+              <TextInput
+                label='科系'
+                value={store.major}
+                onChangeText={store.setMajor}
+              />
+              <SelectInput
+                label='學歷'
+                value={store.selectedEducation}
+                data={store.education}
+                onChangeText={store.setEducation}
+              />
+            </View>
+            <SelectInput
+              label='學校'
+              value={store.selectedSchool}
+              data={store.school}
+              onChangeText={store.setSchool}
+            />
+          </View>
+        }
+        {!isTutor && 
+          <View>
+            <SelectInput
+              label='學歷'
+              value={store.selectedEducation}
+              data={store.education}
+              onChangeText={store.setEducation}
+            />
+            <TextInput
+              label='希望達成目標'
+              value={store.goal}
+              onChangeText={store.setGoal}
+            />
+          </View>
+        }
         <TextInput
           label='簡介'
           value={store.intro}
