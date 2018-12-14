@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { Button, List, ListItem } from 'react-native-elements';
 import { observer } from 'mobx-react';
-import { CheckBox } from 'native-base';
+import { RkChoice } from 'react-native-ui-kitten';
 
 @observer
 export default class SelectPage extends Component {
@@ -45,7 +45,7 @@ export default class SelectPage extends Component {
               key={i}
               containerStyle={styles.listItem}
               title={item.name}
-              rightIcon={<CheckBox checked={item.selected} />}
+              rightIcon={<RkChoice rkType='clear' selected={item.selected}/>}
               onPress={() => toggle(item.id)}
               onPressRightIcon={() => toggle(item.id)}
             />
