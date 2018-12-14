@@ -1,5 +1,5 @@
 import { action, computed, observable } from 'mobx';
-import { getProfile } from '../api/settings';
+import { getProfile, updateProfile } from '../api/settings';
 
 export class ProfileStore {
   gender = [
@@ -37,8 +37,9 @@ export class ProfileStore {
   @observable goal = '';
   @observable intro = '';
 
-  constructor(getProfile) {
+  constructor(getProfile, updateProfile) {
     this.getProfile = getProfile;
+    this.updateProfile = updateProfile;
   }
 
   @computed get isTutor() {
@@ -100,7 +101,6 @@ export class ProfileStore {
 
   submit = () => {
     const data = {
-      userId: this.userId,
       tutorOrStudent: this.selectedTutorOrStudent,
       name: this.name,
       gender: this.selectedGender,
@@ -111,10 +111,10 @@ export class ProfileStore {
       intro: this.intro
     }
     
-    console.log(data);
+    this.updateProfile(this.userId, data);
   }
 }
 
-const profileStore = new ProfileStore(getProfile);
+const profileStore = new ProfileStore(getProfile, updateProfile);
 
 export default profileStore;

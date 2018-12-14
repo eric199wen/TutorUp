@@ -16,9 +16,9 @@ router.get('/profiles/:id', (req, res) => {
 });
 
 router.put('/profiles/:id', (req, res) => {
+  const userId = req.params.id;
   const data = req.body;
-  console.log(data);
-  userData = data;
+  userData[userId].profile = data;
 
   res.send('user data modified');
 });
