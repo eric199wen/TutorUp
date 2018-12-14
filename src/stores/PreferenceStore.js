@@ -1,4 +1,4 @@
-import { observable, action, computed } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import { getPreference } from '../api/settings';
 
 export class PreferenceStore {
@@ -36,7 +36,7 @@ export class PreferenceStore {
   @observable subjects = [
     { id: 0, name: '國文', selected: false },
     { id: 1, name: '英文', selected: false },
-    { id: 2, name: '數學', selected: false },    
+    { id: 2, name: '數學', selected: false },
     { id: 3, name: '物理', selected: false },
     { id: 4, name: '化學', selected: false },
     { id: 5, name: '生物', selected: false },
@@ -60,8 +60,8 @@ export class PreferenceStore {
     { id: 1, name: '國中', selected: false },
     { id: 2, name: '高中', selected: false },
     { id: 3, name: '大學', selected: false },
-    { id: 4, value: '碩士', selected: false },
-    { id: 5, value: '博士', selected: false },
+    { id: 4, name: '碩士', selected: false },
+    { id: 5, name: '博士', selected: false },
   ];
   @computed get selectedTargetAges() {
     let res = [];
