@@ -46,14 +46,12 @@ export class PreferenceStore {
   ]
   @computed get selectedSubjects() {
     let res = [];
-    console.log('in selectdSubjects');
     this.subjects.forEach((subject) => {
       if (subject.selected) {
         res.push(subject);
       }
     });
 
-    console.log(res);
     return res;
   };
 
@@ -62,6 +60,8 @@ export class PreferenceStore {
     { id: 1, name: '國中', selected: false },
     { id: 2, name: '高中', selected: false },
     { id: 3, name: '大學', selected: false },
+    { id: 4, value: '碩士', selected: false },
+    { id: 5, value: '博士', selected: false },
   ];
   @computed get selectedTargetAges() {
     let res = [];
