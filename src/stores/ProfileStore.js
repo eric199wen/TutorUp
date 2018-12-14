@@ -1,27 +1,11 @@
-import { observable, action } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import { getProfile } from '../api/settings';
 
 export class ProfileStore {
-  @observable userId = 1;
-  @observable tutorOrStudent = [
-    { id: 0, value: '家教' },
-    { id: 1, value: '學生' }
-  ];
-  @observable selectedTutorOrStudent = '家教';
-  @observable name = '';
-  @observable gender = [
+  gender = [
     { id: 0, value: '男' },
     { id: 1, value: '女' }
   ];
-  @observable selectedGender = '男';
-  @observable education = [
-    { id: 0, value: '高中' },
-    { id: 1, value: '大學' },
-    { id: 2, value: '碩士' },
-    { id: 3, value: '博士' },
-  ];
-  @observable selectedEducation = '大學';
-  
   school = [
     { id: 0, value: '台灣大學' },
     { id: 1, value: '清華大學' },
@@ -32,14 +16,37 @@ export class ProfileStore {
     { id: 6, value: '中正大學' },
     { id: 7, value: '中興大學' }
   ];
+  education = [
+    { id: 0, value: '高中' },
+    { id: 1, value: '大學' },
+    { id: 2, value: '碩士' },
+    { id: 3, value: '博士' },
+  ];
+  tutorOrStudent = [
+    { id: 0, value: '家教' },
+    { id: 1, value: '學生' }
+  ];
+  
+  @observable userId = 1;
+  @observable selectedTutorOrStudent = '家教';
+  @observable name = '';
+  @observable selectedGender = '男';
+  @observable selectedEducation = '大學';
   @observable selectedSchool = '清華大學';
-
-
   @observable major = '';
+  @observable goal = '';
   @observable intro = '';
 
   constructor(getProfile) {
     this.getProfile = getProfile;
+  }
+
+  @computed get isTutor() {
+    if (this.selectedTutorOrStudent === '家教') {
+      return true;
+    }
+
+    return false;
   }
 
   @action setUserId = (userId) => {
@@ -70,6 +77,10 @@ export class ProfileStore {
     this.major = major;
   }
 
+  @action setGoal = (goal) => {
+    this.goal = goal;
+  }
+
   @action setIntro = (intro) => {
     this.intro = intro;
   }
@@ -83,6 +94,7 @@ export class ProfileStore {
     this.selectedEducation = userData.education;
     this.selectedSchool = userData.school;
     this.major = userData.major;
+    this.goal = userData.goal;
     this.intro = userData.intro;
   }
 
@@ -95,6 +107,7 @@ export class ProfileStore {
       education: this.selectedEducation,
       school: this.selectedSchool,
       major: this.major,
+      goal: this.goal,
       intro: this.intro
     }
     
