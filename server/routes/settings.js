@@ -1,6 +1,6 @@
 const express = require('express');
 const url = require('url');
-const data = require('../static_data/users.json');
+let userData = require('../static_data/users.json');
 
 const router = express.Router();
 
@@ -9,18 +9,24 @@ router.get('/', (req, res, next) => {
   res.send('respond with a resource');
 });
 
-router.get('/profile', (req, res) => {
-  const query = url.parse(req.url, true).query;
-  const userId = query.userId;
+router.get('/profiles/:id', (req, res) => {
+  const userId = req.params.id;
 
-  res.send(data[userId].profile);
+  res.send(userData[userId].profile);
 });
 
-router.get('/preference', (req, res) => {
-  const query = url.parse(req.url, true).query;
-  const userId = query.userId;
+router.put('/profiles/:id', (req, res) => {
+  const data = req.body;
+  console.log(data);
+  userData = data;
 
-  res.send(data[userId].preference);
+  res.send('user data modified');
+});
+
+router.get('/preferences/:id', (req, res) => {
+  const userId = req.params.id;
+
+  res.send(userData[userId].preference);
 });
 
 module.exports = router;
